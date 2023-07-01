@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        /* ... (previous CSS styles remain the same) ... */
+    </style>
+    <script>
+        // Function to filter cities based on search input
+        function filterCities() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById('citySearch');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("cityDropdown");
+            li = ul.getElementsByTagName('li');
+
+            // Hide cities that do not match the search input
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Login Form</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="citySearch" onkeyup="filterCities()" placeholder="Search for a city...">
+                <ul id="cityDropdown">
+                    <li><a href="#">New York</a></li>
+                    <li><a href="#">London</a></li>
+                    <li><a href="#">Paris</a></li>
+                    <li><a href="#">Pakistan</a></li>
+                    <!-- Add more cities here -->
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="USA">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="France">Pakistan</option>
+                    <option value="Japan">China</option>
+                    <!-- Add more countries here -->
+                </select>
+            </div>
+          <div class="form-group">
+    <label>Are you a student?</label><br>
+    <input type="radio" id="studentYes" name="student" value="yes" required>
+    <label for="studentYes">Yes</label>
+    <input type="radio" id="studentNo" name="student" value="no" required>
+    <label for="studentNo">No</label>
+</div>
+<button type="submit">Submit</button>
+</form>
+<div id="success-message" class="success-message" style="display: none;">
+    Thanks! Your form has been successfully submitted.
+</div>
+</div>
+
+<script>
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+    document.getElementById("success-message").style.display = "block";
+    document.getElementById("login-form").reset();
+});
+</script>
